@@ -10,8 +10,13 @@ dotenv.config();
 
 const app = express();
 // Настроим CORS для всех доменов
-app.use(cors());
-
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Укажи тут URL твоего клиентского приложения
+    methods: ["GET", "POST", "PUT", "DELETE"], // Перечисление методов, которые разрешены
+    allowedHeaders: ["Content-Type", "Authorization"], // Заголовки, которые могут быть использованы в запросах
+  }),
+);
 app.use(express.json()); // Для парсинга JSON тела запросов
 
 // Подключение к MongoDB

@@ -26,6 +26,10 @@ app.use("/api/auth", authRoutes);
 app.get("/api/protected", protect, (req, res) => {
   res.json({ message: "Вы вошли в защищенный раздел", user: req.user });
 });
+// Добавляем новый роут на '/'
+app.get("/", (req, res) => {
+  res.json({ message: "Добро пожаловать на сервер Express!", status: "ok" });
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Сервер работает на порту ${process.env.PORT}`);

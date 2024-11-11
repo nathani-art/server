@@ -12,9 +12,10 @@ const app = express();
 // Настроим CORS для всех доменов
 app.use(
   cors({
-    origin: "http://localhost:5173", // Укажи тут URL твоего клиентского приложения
-    methods: ["GET", "POST", "PUT", "DELETE"], // Перечисление методов, которые разрешены
-    allowedHeaders: ["Content-Type", "Authorization"], // Заголовки, которые могут быть использованы в запросах
+    origin: "http://localhost:5173", // Разрешаем запросы с этого домена
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Разрешаем методы, включая OPTIONS для preflight запросов
+    allowedHeaders: ["Content-Type", "Authorization"], // Разрешаем заголовки
+    credentials: true, // Если ты используешь cookies или авторизацию через заголовки
   }),
 );
 app.use(express.json()); // Для парсинга JSON тела запросов
